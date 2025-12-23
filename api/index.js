@@ -8,17 +8,26 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import path from 'path';
 
-dotenv.config({ path: './api/.env' }); // Load .env file from api directory
+// Load .env from the api folder (resolve absolute path so it works from any cwd)
+dotenv.config({ path: path.join(process.cwd(), 'api', '.env') });
 
-console.log('Connecting to MongoDB at:', process.env.MONGO_URI); // ✅ Debug log
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+
+console.log('Connecting to MongoDB at:', mongoUri ? '[REDACTED]' : mongoUri); // show presence only
+
+if (!mongoUri) {
+  console.error('❌ Missing MongoDB connection string. Set `MONGO_URI` in `api/.env` or provide `MONGODB_URI` as an environment variable.');
+  process.exit(1);
+}
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(mongoUri)
   .then(() => {
     console.log('✅ Connected to MongoDB!');
   })
   .catch((err) => {
     console.error('❌ MongoDB connection error:', err);
+    process.exit(1);
   });
 
 const __dirname = path.resolve();

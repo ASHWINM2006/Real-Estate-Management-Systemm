@@ -1,0 +1,83 @@
+/* Property Grid Styles */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  padding: 1rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.property-card-wrapper {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  position: relative;
+  min-width: 280px;
+}
+
+.property-card-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.property-card-container:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.section-divider {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  margin: 0 auto;
+  border-radius: 2px;
+  margin-bottom: 3rem;
+}
+
+.offers-divider {
+  background: linear-gradient(90deg, #ef4444, #f97316);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .property-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .property-card-wrapper {
+    max-width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .property-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1400px) {
+  .property-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1401px) {
+  .property-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
